@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>User Infos Page</title>
+  </head>
+  <body class="p-3 mb-2 bg-secondary text-white">
+    <div class="container">
+        <h1>My Page</h1>
+    </div>
+
+    <div id="danger"  style='display: none;' class="alert alert-danger"></div>
+    <div id="success" style='display: none;' class="alert alert-success"></div>
+    <div id="info"    style='display: none;' class="alert alert-info"></div>
+
+    <div class="container p-3 mb-2 bg-white text-dark">
+        <div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+                </div>
+                <input id="form_user_email" type="text" class="form-control" value="[[USER_EMAIL]]" disabled>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Pass Hash</span>
+                </div>
+                <input type="text" class="form-control" value="[[USER_PWD]]" disabled>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">UID</span>
+                </div>
+                <input type="text" class="form-control" value="[[USER_ID]]" disabled>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">SessionId</span>
+                </div>
+                <input type="text" class="form-control" value="[[CURRENT_SESSION]]" disabled>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    Input there your new email :
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">New Email</span>
+                        </div>
+                        <input id="new_email" type="email" class="form-control" placeholder="...@..." required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="change_email();">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Modify my email !
+        </button>
+    
+        <a class="btn btn-danger text-white" onclick="loggout();">Out !</a>
+    </div>
+ 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        function alert(type, message) {
+            $(".alert").css("display", "none");
+            $('#' + type)[0].innerText = message;
+            $('#' + type).css("display", 'block');
+        }
+
+        async function loggout() {
+            $.get("../loggout/").done(function(data) {
+                if (data['status_code'] < 400) {
+                    alert('success', data['text'] + "\nYou'll be automatically redirected in 3s");
+                    setTimeout(function() {
+                        document.location.href = "../authentified/"
+                    }, 3000);
+                } else {
+                    alert("danger", data['error']);
+                }
+            });
+        }
+
+        async function change_email() {
+            const new_email = $("#new_email")[0].value;
+            
+            
+            $.get("../change_email/", {'new_mail': new_email}).done(function(data) {
+                if (data['status_code'] < 400) {
+                    alert('success', data['text']);
+                    $("#form_user_email")[0].value = new_email;
+                    $("#new_email")[0].value = '';
+                } else {
+                    alert("danger", data['error']);
+                }
+
+                $(".modal").modal("hide");
+            })
+        }
+
+    </script>
+  </body>
+</html>
