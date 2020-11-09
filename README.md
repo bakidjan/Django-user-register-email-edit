@@ -31,22 +31,14 @@ $ http://0.0.0.0:8000/index/
 url d'accès à la modification de l'adresse email
 ```bash
 $ http://0.0.0.0:8000/authentified/
-
+```
 
 ## Démarrer le serveur sur Django : 
 
 ```bash
 $ python3 mange.py runserver
 ```
-# ensuite aller sur un navigateur web pour lancer l'application
 ```bash
 $ http://localhost:8000/
 ```
-url d'accès à l'accueil
-```bash
-$ http://localhost:8000//index/
-```
-url d'accès à la modification de l'adresse email
-```bash
-$ http://localhost:8000/authentified/
-```
+
