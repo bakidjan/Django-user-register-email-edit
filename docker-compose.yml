@@ -1,11 +1,15 @@
-db:
-  image: postgres
-web:
-  build: .
-  command: python manage.py runserver 0.0.0.0:8000
-  volumes:
-    - .:/code
-  ports:
-    - "8000:8000"
-  links:
-    - db
+version: "3"
+   
+services:
+    db:
+      image: postgres
+    django:
+        build: .
+        container_name: django
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/usr/src/app
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
