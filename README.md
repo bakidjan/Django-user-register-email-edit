@@ -13,5 +13,5 @@
 ## Utilisation : 
 
 ```bash
-$ git clone https://github.com/bakidjan/depotDepot.git
+$ git clone https://github.com/bakidjan/Django-user-register-email-edit.git
 ```
