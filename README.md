@@ -15,3 +15,20 @@
 ```bash
 $ git clone https://github.com/bakidjan/Django-user-register-email-edit.git
 ```
+## pour demarrer le server de l'application : 
+
+```bash
+$ docker-compose up
+```
+ensuite aller sur un navigateur
+```bash
+$ http://0.0.0.0:8000/
+```
+url d'accès à l'accueil
+```bash
+$ http://0.0.0.0:8000/index/
+```
+url d'accès à la modification de l'adresse email
+```bash
+$ http://0.0.0.0:8000/authentified/
+```
