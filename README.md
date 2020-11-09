@@ -15,7 +15,7 @@
 ```bash
 $ git clone https://github.com/bakidjan/Django-user-register-email-edit.git
 ```
-## pour demarrer le server de l'application : 
+## pour demarrer le serveur de l'application : 
 
 ```bash
 $ docker-compose up
