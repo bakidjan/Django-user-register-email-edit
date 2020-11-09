@@ -9,18 +9,23 @@
 >
 
 ## Technos :  
-* Django, Python, Bootstrap et jQuery.
+* Django, Python3, Sqlite3 Bootstrap et jQuery et Docker.
 ## Utilisation : 
 
 ```bash
 $ git clone https://github.com/bakidjan/Django-user-register-email-edit.git
 ```
-## pour demarrer le serveur de l'application : 
+## Démarrer le serveur sur Docker : 
 
 ```bash
 $ docker-compose up
 ```
-ensuite aller sur un navigateur
+## Démarrer le serveur sur Django : 
+
+```bash
+$ python3 mange.py runserver
+```
+# ensuite aller sur un navigateur web pour lancer l'application
 ```bash
 $ http://0.0.0.0:8000/
 ```
